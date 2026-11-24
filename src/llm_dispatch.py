@@ -65,16 +65,11 @@ _client = None
 # rotate to the next available model in the chain instead of falling
 # back offline. Retired 1.x/2.x models are NOT listed — they just add
 # wasted latency while the chain waits for a 404 before moving on.
-DEFAULT_MODEL = "gemini-3.5-flash"
-MODEL_FALLBACK_CHAIN = [
-    "gemini-3.5-flash",
-    "gemini-3.6-flash",
-    "gemini-3.7-flash",
-    "gemini-3.8-flash",
-    "gemini-flash-latest",
-    "gemini-flash-lite-latest",
-]
+DEFAULT_MODEL = "gemini-3.5-flash-lite"
 
+MODEL_FALLBACK_CHAIN = [
+    "gemini-3.5-flash-lite",
+]
 
 def sanitize_sop_text(sop_text: str) -> str:
     """Normalize raw LLM output to clean plain text.
