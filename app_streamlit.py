@@ -1180,7 +1180,7 @@ if backend_ok and llm_ok:
         f'<span class="status-pill online"><span class="dot"></span>System Online</span>'
         f'<span class="status-pill online"><span class="dot"></span>LLM Active — {status_msg}</span>'
         f'<span class="status-pill" style="color:var(--muted);font-size:0.7rem;border:1px dashed var(--border);">'
-        f'BUILD 2026-09-10 CLEAN-SOP</span>'
+        
         f'</div>',
         unsafe_allow_html=True,
     )
