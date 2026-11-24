@@ -1,0 +1,42 @@
+# MedEQ dependencies
+# ---------------------------------------------------------------------------
+# WHY THESE ARE PINNED (they used to be bare package names):
+# The trained models in models/ are Python pickles, and a pickle is coupled to
+# the library version that wrote it. The shipped models were re-serialised
+# under exactly the versions below, so they load with NO warnings. With
+# unpinned versions, pip installs whatever is newest that day and you get
+#   "InconsistentVersionWarning: Trying to unpickle estimator LabelEncoder
+#    from version X when using version Y"
+# which is unsupported and can silently change behaviour.
+#
+# If you upgrade any of the first four lines, re-run:
+#   python src/train_model.py
+# so the saved models are rewritten by the version you are actually using.
+# ---------------------------------------------------------------------------
+
+# --- Core ML stack: these four determine whether models/*.pkl load correctly
+numpy==2.4.4
+pandas==3.0.2
+scikit-learn==1.8.0
+xgboost==3.4.1
+
+# --- Explainability and model persistence
+shap==0.52.0
+joblib==1.5.3
+
+# --- Backend API
+fastapi>=0.115,<1.0
+uvicorn>=0.30,<1.0
+pydantic>=2.7,<3.0
+
+# --- Dashboard
+streamlit>=1.40,<2.0
+
+# --- HTTP client (dashboard -> API)
+requests>=2.32,<3.0
+
+# --- LLM provider. Optional at runtime: the app falls back to an offline SOP
+#     template if this is missing or has no API key. The version floor matters
+#     because src/llm_dispatch.py passes http_options={"retry_options": ...},
+#     which older releases of the SDK do not accept.
+google-genai>=1.0.0
